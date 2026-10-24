@@ -1,3 +1,15 @@
+// Estado
+let grassTex, pathTex, treeTex, trunkTex, rockTex;
+
+function makeTextures() {
+    noiseSeed(NOISE_SEED);
+    grassTex = makeGrassTex();
+    pathTex  = makePathTex();
+    treeTex  = makeTreeTex();
+    trunkTex = makeTrunkTex();
+    rockTex  = makeRockTex();
+}
+
 function tileNoise(sizeX, sizeY, scale, x, y) {
     const mx = Math.min(x, sizeX - x) * scale;
     const my = Math.min(y, sizeY - y) * scale;
@@ -121,26 +133,4 @@ function makeRockTex() {
     }
     g.updatePixels();
     return g;
-}
-
-// TEMPORAL
-function drawTextureBoard() {
-    const items = [
-        { tex: grassTex, w: 240, h: 240, x: -300, y: 150,  label: 'grass 512x512' },
-        { tex: pathTex,  w: 240, h: 240, x: 0,    y: 150,  label: 'path 256x256' },
-        { tex: treeTex,  w: 240, h: 240, x: 300,  y: 150,  label: 'tree 256x256' },
-        { tex: trunkTex, w: 120, h: 240, x: -300, y: -170, label: 'trunk 128x256' },
-        { tex: rockTex,  w: 240, h: 240, x: 0,    y: -170, label: 'rock 128x128' },
-    ];
-    for (const it of items) {
-        push();
-        translate(it.x, it.y, 0);
-        texture(it.tex);
-        plane(it.w, it.h);
-        pop();
-        fill(20);
-        textSize(18);
-        textAlign(CENTER, TOP);
-        text(it.label, it.x, it.y + it.h / 2 + 14);
-    }
 }
