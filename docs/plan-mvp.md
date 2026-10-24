@@ -55,7 +55,7 @@ El orden sigue un principio: **de lo estático a lo dinámico**. Primero se cons
 | Fase | Estado |
 |------|--------|
 | 1. Base y estructura | ✅ Completada |
-| 2. Escena (contenido) | ⏳ Pendiente |
+| 2. Escena (contenido) | ⏳ En progreso (texturas procedurales ✅; falta escena estática) |
 | 3. Movimiento (cámara) | ⏳ Pendiente |
 | 4. Niebla (efecto central) | ⏳ Pendiente |
 | 5. Interacción | ⏳ Pendiente |
