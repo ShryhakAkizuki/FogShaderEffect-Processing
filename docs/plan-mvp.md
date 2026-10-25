@@ -55,8 +55,8 @@ El orden sigue un principio: **de lo estático a lo dinámico**. Primero se cons
 | Fase | Estado |
 |------|--------|
 | 1. Base y estructura | ✅ Completada |
-| 2. Escena (contenido) | ⏳ Pendiente |
-| 3. Movimiento (cámara) | ⏳ Pendiente |
-| 4. Niebla (efecto central) | ⏳ Pendiente |
+| 2. Escena (contenido) | ✅ Completada (texturas procedurales ✅; escena estática: suelo, camino, bosque ✅; refactor: constantes en `config.js`, entidades en `entities.js`, `main.js` solo orquesta) |
+| 3. Movimiento (cámara) | ✅ Completada (bucle de 48 s con `t % SECONDS_PER_LAP` sin salto al reiniciar; rebote de 96 pasos por vuelta en `setupCamera()`) |
+| 4. Niebla (efecto central) | ✅ Completada (shader GLSL en `fog.js`: distancia en espacio de vista + mezcla `max(exponencial, rampa lineal)` que garantiza niebla total a `FOG_FADE_MAX_DIST`; suelo con malla detallada `GROUND_DETAIL` para que la niebla se interpole bien cerca de la cámara) |
 | 5. Interacción | ⏳ Pendiente |
 | 6. Pulido y publicación | ⏳ Pendiente |
