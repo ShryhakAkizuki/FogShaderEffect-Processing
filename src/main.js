@@ -7,6 +7,7 @@ function setup() {
     makeTextures();
     generateForest();
     initFog();
+    initFogUI();
 }
 
 function draw() {

@@ -58,5 +58,5 @@ El orden sigue un principio: **de lo estático a lo dinámico**. Primero se cons
 | 2. Escena (contenido) | ✅ Completada (texturas procedurales ✅; escena estática: suelo, camino, bosque ✅; refactor: constantes en `config.js`, entidades en `entities.js`, `main.js` solo orquesta) |
 | 3. Movimiento (cámara) | ✅ Completada (bucle de 48 s con `t % SECONDS_PER_LAP` sin salto al reiniciar; rebote de 96 pasos por vuelta en `setupCamera()`) |
 | 4. Niebla (efecto central) | ✅ Completada (shader GLSL en `fog.js`: distancia en espacio de vista + mezcla `max(exponencial, rampa lineal)` que garantiza niebla total a `FOG_FADE_MAX_DIST`; suelo con malla detallada `GROUND_DETAIL` para que la niebla se interpole bien cerca de la cámara) |
-| 5. Interacción | ⏳ Pendiente |
+| 5. Interacción | ✅ Completada (sliders DOM de `fogNear`/`fogFar` en `ui.js`; rampa de niebla `smoothstep` polinómica en el shader `fog.js`, inmune a NaN si se cruzan `near`/`far` — corrige render negro en Brave; el panel DOM queda fuera del pipeline WebGL, sin textura no-PoT) |
 | 6. Pulido y publicación | ⏳ Pendiente |

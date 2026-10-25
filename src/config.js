@@ -14,8 +14,13 @@ const WALK_STEPS_PER_LAP      = 96;
 const LOOK_AHEAD_ANGLE        = 0.02;
 
 // --- Niebla ---
-let fogDensity = 0.0045;
-const FOG_FADE_MAX_DIST = 560;
+let fogNear = 80;
+let fogFar  = 500;
+const FOG_NEAR_MIN = 0;
+const FOG_NEAR_MAX = 300;
+const FOG_FAR_MIN  = 100;
+const FOG_FAR_MAX  = 1000;
+const FOG_MIN_GAP  = 10;
 
 // --- Planos de proyección ---
 const LESSON_MODE_NEAR_PLANE  = 12;

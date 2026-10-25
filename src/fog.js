@@ -21,16 +21,16 @@ precision highp float;
 
 uniform sampler2D uSampler;
 uniform vec3 uFogColor;
-uniform float uFogDensity;
-uniform float uFogMaxDist;
+uniform float uFogNear;
+uniform float uFogFar;
 
 varying float varViewDist;
 varying vec2 varTexCoord;
 
 void main(void) {
-  float expF = 1.0 - exp(-uFogDensity * varViewDist);
-  float linF = clamp(varViewDist / uFogMaxDist, 0.0, 1.0);
-  float f = clamp(max(expF, linF), 0.0, 1.0);
+  float span = max(uFogFar - uFogNear, 1.0);
+  float f = clamp((varViewDist - uFogNear) / span, 0.0, 1.0);
+  f = f * f * (3.0 - 2.0 * f);
 
   vec3 fog = uFogColor / 255.0;
 
@@ -49,6 +49,6 @@ function applyFog() {
   if (!fogShader) return;
   shader(fogShader);
   fogShader.setUniform('uFogColor', fogColor);
-  fogShader.setUniform('uFogDensity', fogDensity);
-  fogShader.setUniform('uFogMaxDist', FOG_FADE_MAX_DIST);
+  fogShader.setUniform('uFogNear', fogNear);
+  fogShader.setUniform('uFogFar', fogFar);
 }
