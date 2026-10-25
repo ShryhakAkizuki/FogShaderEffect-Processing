@@ -20,21 +20,74 @@ function drawPath() {
     pop();
 }
 
+function rockRadius(e) {
+    return e.w * ROCK_RADIUS_FACTOR;
+}
+
+function collisionRadius(e) {
+    const base = (e.type === 'tree')
+        ? e.w * TREE_TRUNK_RADIUS_RATIO
+        : rockRadius(e);
+    return base + COLLISION_MARGIN;
+}
+
+function makeCandidate() {
+    const band = random() < 0.5 ? FOREST_BAND_INNER : FOREST_BAND_OUTER;
+    const r = random(band[0], band[1]);
+    const a = random(TWO_PI);
+    return {
+        x: r * cos(a),
+        z: r * sin(a),
+        type:  random() < TREE_RATIO ? 'tree' : 'rock',
+        h: random(TREE_H_MIN, TREE_H_MAX),
+        w: random(TREE_W_MIN, TREE_W_MAX),
+        phase: random(TWO_PI)
+    };
+}
+
+function fits(e) {
+    const minD2 = collisionRadius(e);
+    for (const o of elements) {
+        const dx = e.x - o.x;
+        const dz = e.z - o.z;
+        const minD = minD2 + collisionRadius(o);
+        if (dx * dx + dz * dz < minD * minD) return false;
+    }
+    return true;
+}
+
 function generateForest() {
     randomSeed(RANDOM_SEED);
     elements = [];
     for (let i = 0; i < FOREST_COUNT; i++) {
-        const band = random() < 0.5 ? FOREST_BAND_INNER : FOREST_BAND_OUTER;
-        const r = random(band[0], band[1]);
-        const a = random(TWO_PI);
-        elements.push({
-            x: r * cos(a),
-            z: r * sin(a),
-            type:  random() < TREE_RATIO ? 'tree' : 'rock',
-            h: random(TREE_H_MIN, TREE_H_MAX),
-            w: random(TREE_W_MIN, TREE_W_MAX),
-            phase: random(TWO_PI)
-        });
+        let e = makeCandidate();
+        let attempts = 0;
+        while (!fits(e) && attempts < MAX_PLACEMENT_ATTEMPTS) {
+            e = makeCandidate();
+            attempts++;
+        }
+        if (!fits(e)) {
+            console.warn(`[bosque] elemento ${i} no encontró lugar; omitido`);
+            continue;
+        }
+        elements.push(e);
+    }
+    verifyNoCollisions();
+}
+
+function verifyNoCollisions() {
+    // console.assert(elements.length === FOREST_COUNT,
+    //     `[bosque] esperados ${FOREST_COUNT} elementos, generados ${elements.length}`);
+    for (let i = 0; i < elements.length; i++) {
+        for (let j = i + 1; j < elements.length; j++) {
+            const a = elements[i], b = elements[j];
+            const dx = a.x - b.x;
+            const dz = a.z - b.z;
+            const minD = collisionRadius(a) + collisionRadius(b);
+            console.assert(dx * dx + dz * dz >= minD * minD,
+                `[bosque] colisión entre ${a.type}#${i} (${a.x.toFixed(1)}, ${a.z.toFixed(1)})`
+                + ` y ${b.type}#${j} (${b.x.toFixed(1)}, ${b.z.toFixed(1)})`);
+        }
     }
 }
 
@@ -75,7 +128,7 @@ function drawTree(e) {
 }
 
 function drawRock(e) {
-    const r = e.w * 0.8;
+    const r = rockRadius(e);
     push();
     rotateY(e.phase);
     scale(1, ROCK_SCALE_Y, 1);

@@ -46,3 +46,8 @@ const TREE_DETAIL              = 8;
 const ROCK_SCALE_Y             = 0.7;
 const ROCK_EMBED_RATIO         = 0.25;
 const ROCK_DETAIL              = 8;
+const ROCK_RADIUS_FACTOR       = 0.8;
+
+// --- Colisión al inicializar la escena ---
+const COLLISION_MARGIN         = 1;
+const MAX_PLACEMENT_ATTEMPTS   = 60;
