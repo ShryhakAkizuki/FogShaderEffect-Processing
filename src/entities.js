@@ -6,7 +6,7 @@ function drawGround() {
     rotateX(-HALF_PI);
     texture(grassTex);
     textureWrap(REPEAT);
-    plane(GRASS_SIZE, GRASS_SIZE);
+    plane(GRASS_SIZE, GRASS_SIZE, GROUND_DETAIL, GROUND_DETAIL);
     pop();
 }
 

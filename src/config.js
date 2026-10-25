@@ -13,6 +13,10 @@ const WALK_BOUNCE_AMPLITUDE   = 2;
 const WALK_STEPS_PER_LAP      = 96;
 const LOOK_AHEAD_ANGLE        = 0.02;
 
+// --- Niebla ---
+let fogDensity = 0.0045;
+const FOG_FADE_MAX_DIST = 560;
+
 // --- Planos de proyección ---
 const LESSON_MODE_NEAR_PLANE  = 12;
 const DISTANCE_MODE_NEAR_PLANE = 0.1;
@@ -20,6 +24,7 @@ const FAR_PLANE               = 2000;
 
 // --- Suelo ---
 const GRASS_SIZE = 1400;
+const GROUND_DETAIL = 32;
 
 // --- Camino circular (torus) ---
 const PATH_SUNK          = 6;
