@@ -1,7 +1,10 @@
 let t = 0;
+let resizeTimer = null;
 
 function setup() {
     createCanvas(windowWidth, windowHeight, WEBGL);
+    pixelDensity(min(pixelDensity(), MAX_PIXEL_DENSITY));
+    frameRate(FRAME_RATE_TARGET);
     noStroke();
 
     makeTextures();
@@ -13,7 +16,7 @@ function setup() {
 function draw() {
     background(fogColor[0], fogColor[1], fogColor[2]);
 
-    t += deltaTime / 1000;
+    t += min(deltaTime, MAX_DELTA_MS) / 1000;
     const theta = TWO_PI * (t % SECONDS_PER_LAP) / SECONDS_PER_LAP;
     setupCamera(theta);
 
@@ -24,7 +27,13 @@ function draw() {
 }
 
 function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
+    if (resizeTimer !== null) clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+        resizeTimer = null;
+        resizeCanvas(windowWidth, windowHeight);
+        pixelDensity(min(pixelDensity(), MAX_PIXEL_DENSITY));
+        applyFog();
+    }, 150);
 }
 
 function setupCamera(theta) {

@@ -2,21 +2,31 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Fog Shader — Caminata en el anillo brumoso</title>
+  <meta name="description" content="Escena 3D en el navegador: una cámara camina en bucle por un camino circular mientras los árboles y rocas aparecen y desaparecen en la niebla.">
+  <meta name="theme-color" content="#cdd6e4">
 
-  <script language="javascript" type="text/javascript" src="libraries/p5.min.js"></script>
+  <script language="javascript" type="text/javascript" src="libraries/p5.min.js?v=2"></script>
   <!-- scripts se cargan en orden de dependencias -->
-  <script language="javascript" type="text/javascript" src="config.js?v=9"></script>
+  <script language="javascript" type="text/javascript" src="config.js?v=10"></script>
   <script language="javascript" type="text/javascript" src="fog.js?v=4"></script>
-  <script language="javascript" type="text/javascript" src="textures.js?v=4"></script>
+  <script language="javascript" type="text/javascript" src="textures.js?v=5"></script>
   <script language="javascript" type="text/javascript" src="entities.js?v=6"></script>
   <script language="javascript" type="text/javascript" src="ui.js?v=3"></script>
-  <script language="javascript" type="text/javascript" src="main.js?v=9"></script>
+  <script language="javascript" type="text/javascript" src="main.js?v=10"></script>
 
   <style>
-    body {
+    html, body {
       padding: 0;
       margin: 0;
+      overscroll-behavior: none;
+    }
+
+    canvas {
+      display: block;
+      touch-action: none;
+      transform: scaleY(-1);
     }
 
     #fog-panel {
@@ -54,6 +64,14 @@
 
     #fog-panel .fog-val {
       font-variant-numeric: tabular-nums;
+    }
+
+    @media (max-width: 480px) {
+      #fog-panel {
+        width: calc(100vw - 32px);
+        max-width: 240px;
+        font-size: 12px;
+      }
     }
   </style>
 
