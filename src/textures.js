@@ -1,6 +1,12 @@
 // Estado
 let grassTex, pathTex, treeTex, trunkTex, rockTex;
 
+function makeGraphics(W, H) {
+    const g = createGraphics(W, H);
+    g.pixelDensity(1);
+    return g;
+}
+
 function makeTextures() {
     noiseSeed(NOISE_SEED);
     grassTex = makeGrassTex();
@@ -18,7 +24,7 @@ function tileNoise(sizeX, sizeY, scale, x, y) {
 
 function makeGrassTex() {
     const S = 512;
-    const g = createGraphics(S, S);
+    const g = makeGraphics(S, S);
     g.loadPixels();
     const px = g.pixels;
     for (let y = 0; y < S; y++) {
@@ -38,7 +44,7 @@ function makeGrassTex() {
 
 function makePathTex() {
     const S = 256;
-    const g = createGraphics(S, S);
+    const g = makeGraphics(S, S);
     g.loadPixels();
     const px = g.pixels;
     for (let y = 0; y < S; y++) {
@@ -64,7 +70,7 @@ function makePathTex() {
 
 function makeTreeTex() {
     const S = 256;
-    const g = createGraphics(S, S);
+    const g = makeGraphics(S, S);
     g.loadPixels();
     const px = g.pixels;
     for (let y = 0; y < S; y++) {
@@ -89,7 +95,7 @@ function makeTreeTex() {
 
 function makeTrunkTex() {
     const W = 128, H = 256;
-    const g = createGraphics(W, H);
+    const g = makeGraphics(W, H);
     g.loadPixels();
     const px = g.pixels;
     for (let y = 0; y < H; y++) {
@@ -113,7 +119,7 @@ function makeTrunkTex() {
 
 function makeRockTex() {
     const S = 128;
-    const g = createGraphics(S, S);
+    const g = makeGraphics(S, S);
     g.loadPixels();
     const px = g.pixels;
     for (let y = 0; y < S; y++) {
