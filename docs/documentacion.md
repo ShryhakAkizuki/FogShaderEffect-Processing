@@ -6,7 +6,7 @@ Escena 3D que corre **directamente en el navegador**: una cámara camina en bucl
 - 100 % autocontenido: p5.js se incluye localmente y todas las texturas se **generan por código** (ruido procedural). No hay imágenes, fuentes ni servicios de terceros.
 - Bucle perfecto: al completar la vuelta (48 s) la escena vuelve exactamente a su estado inicial, sin saltos.
 
-**Verlo en vivo:** <https://shryhakakizuki.github.io/Fog_shader-Visual_Computing_2026-II/>
+**Verlo en vivo:** <https://shryhakakizuki.github.io/FogShaderEffect-Processing/>
 
 ---
 
@@ -187,7 +187,7 @@ Despliegue **automático a GitHub Pages** con el workflow [`.github/workflows/de
 - Se dispara en cada `push` a `main` (o manualmente con `workflow_dispatch`).
 - Sube la carpeta [`src/`](../src/) como artefacto de la página (es la raíz del sitio) y la despliega con `actions/deploy-pages@v4`.
 
-URL pública: <https://shryhakakizuki.github.io/Fog_shader-Visual_Computing_2026-II/>
+URL pública: <https://shryhakakizuki.github.io/FogShaderEffect-Processing/>
 
 ```sh
 git push origin main   # → se redespliega solo

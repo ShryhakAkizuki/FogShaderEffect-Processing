@@ -2,7 +2,7 @@
 
 Escena 3D que corre **directamente en el navegador**: una cámara camina en bucle por un camino circular mientras los árboles y rocas **aparecen saliendo de la niebla** y **desaparecen en ella**. Con controles en vivo para ajustar `fogNear` / `fogFar` y explorar el efecto.
 
-**Verlo en vivo:** <https://shryhakakizuki.github.io/Fog_shader-Visual_Computing_2026-II/>
+**Verlo en vivo:** <https://shryhakakizuki.github.io/FogShaderEffect-Processing/>
 
 ## Características
 
